@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GPX Fixer{% endblock %}
+
+{% block body %}
+    <div class="jumbotron text-center" style="margin-bottom:0">
+        <a class="nav-link" href="/"><h1>GPX Fixer</h1></a>
+        <p>Чиним поврежденные треки</p>
+    </div>
+
+    <div class="container">
+        <h1>
+            GPX Fixer
+        </h1>
+
+        <p>
+            Чтобы исправитъ файл .gpx, который не открывается в программе, загрузите его сюда:
+        </p>
+
+        <form method="post" action="{{ path("upload_file") }}" enctype="multipart/form-data">
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="30000000"/>
+                    <input type="file" class="custom-file-input" id="inputGroupFile" name="track">
+                    <label class="custom-file-label" for="inputGroupFile">Выберите трек</label>
+                </div>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Загрузитъ</button>
+                </div>
+            </div>
+        </form>
+
+        {% if errors %}
+            {% for message in errors %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="jumbotron text-center" style="margin-bottom:0">
+        <p><a href="https://ra0ued.ru">ra0ued.ru</a></p>
+    </div>
+{% endblock %}
