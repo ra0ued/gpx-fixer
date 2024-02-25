@@ -3,41 +3,43 @@
 {% block title %}GPX Fixer{% endblock %}
 
 {% block body %}
-    <div class="jumbotron text-center" style="margin-bottom:0">
-        <a class="nav-link" href="/"><h1>GPX Fixer</h1></a>
-        <p>Чиним поврежденные треки</p>
-    </div>
-
-    <div class="container">
-        <h1>
-            GPX Fixer
-        </h1>
-
-        <p>
-            Чтобы исправитъ файл .gpx, который не открывается в программе, загрузите его сюда:
-        </p>
-
-        <form method="post" action="{{ path("upload_file") }}" enctype="multipart/form-data">
-            <div class="input-group">
-                <div class="custom-file">
-                    <input type="hidden" name="MAX_FILE_SIZE" value="30000000"/>
-                    <input type="file" class="custom-file-input" id="inputGroupFile" name="track">
-                    <label class="custom-file-label" for="inputGroupFile">Выберите трек</label>
-                </div>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit">Загрузитъ</button>
-                </div>
-            </div>
-        </form>
-
+    <div class="container shadow p-3 mb-5 bg-body rounded">
+        <div class="row">
+            <a class="link-secondary" href="{{ path('index') }}"><h1>GPX Fixer</h1></a>
+            <h3>Чиним поврежденные треки</h3>
+            <p>
+                Чтобы исправитъ файл .gpx, который не открывается, загрузите его сюда:
+            </p>
+        </div>
         {% if errors %}
-            {% for message in errors %}
-                <div class="alert alert-danger">{{ message }}</div>
-            {% endfor %}
+            <div class="row">
+                {% for error in errors %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
         {% endif %}
+        <div class="row">
+            <form method="post" action="{{ path("upload_file") }}" enctype="multipart/form-data">
+                <div class="fieldset">
+                    <div class="input-group mb-3">
+                        <div>
+                            <label for="formFile" class="form-label">Выберите трек</label>
+                            <input type="hidden" name="MAX_FILE_SIZE" value="30000000"/>
+                            <input class="form-control" id="formFile" type="file" name="track">
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div>
+                            <button class="btn btn-primary" type="submit">Загрузитъ</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <p><a href="https://ra0ued.ru" class="link-secondary">ra0ued.ru</a></p>
+        </div>
     </div>
 
-    <div class="jumbotron text-center" style="margin-bottom:0">
-        <p><a href="https://ra0ued.ru">ra0ued.ru</a></p>
-    </div>
 {% endblock %}

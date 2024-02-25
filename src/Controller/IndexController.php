@@ -29,7 +29,7 @@ class IndexController extends AbstractController
     #[Route('/', name: 'index')]
     public function indexAction(): Response
     {
-        $errors = $this->session->getFlashBag()->get('error', []);
+        $errors = $this->session->getFlashBag()->get('error');
 
         $this->session->clear();
 
@@ -46,7 +46,7 @@ class IndexController extends AbstractController
 
         if (!$file) {
             $logger->error('Wrong file format.');
-            $this->session->getFlashBag()->add('error', 'Нужно загрузитъ GPX файл.');
+            $this->session->getFlashBag()->add('error', 'Нужно загрузитъ GPX файл :)');
 
             return $this->redirectToRoute('index');
         }
@@ -62,7 +62,7 @@ class IndexController extends AbstractController
 
         if (!$fixedTrack) {
             $logger->error('Something wrong with ' . $file->getClientOriginalName());
-            $this->session->getFlashBag()->add('error', 'Что-то пошло не так, напишите на ra0ued@zabtech.ru');
+            $this->session->getFlashBag()->add('error', 'Что-то пошло не так, напишите гневное писъмо на ra0ued@zabtech.ru');
 
             return $this->redirectToRoute('index');
         }
